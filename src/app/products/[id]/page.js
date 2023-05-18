@@ -1,5 +1,4 @@
 'use client'
-import Link from "next/link"
 import {Card} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,7 +23,7 @@ export async function generateMetadata({params}) {
             }
         },
         openGraph: {
-            images: product.images[0],
+            images: product.images,
             title: product.title,
             description: product.description
         }
@@ -37,7 +36,7 @@ export default async function ProductDetail({params}) {
     return (
         <div className='container'>
             <div className='row justify-content-center align-item-center d-flex'>
-                <Card className='col-12 col-xlg-3 col-lg-3 col-sm-12 col-md-6'>
+                <Card className='col-12 col-xlg-3 col-lg-3 col-sm-12 col-md-6 p-0'>
                     <Card.Img variant="top"
                         src={
                             product.images[0]

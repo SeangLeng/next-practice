@@ -2,9 +2,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './../page.module.css'
-import {Card} from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { Card } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 // static metadata object
 export const metadata = {
@@ -14,25 +13,22 @@ export const metadata = {
 
 // create async function to getProducts
 async function fetchProducts() { // similar to getServerSideProps
-    const resp = await fetch("https://api.escuelajs.co/api/v1/products", {cache: "no-store"})
+    const resp = await fetch("https://api.escuelajs.co/api/v1/products", { cache: "no-store" })
     return resp.json()
 }
 
 export default async function Products() {
     const products = await fetchProducts()
     return (
-        <main className={
-            styles.main
-        }>
-            <div className='container'>
-                <div className='row justify-content-center align-item-center d-flex'>
-                    {
+        <main className={styles.main}>
+            <div className='row justify-content-center align-item-center flex-wrap g-2'>
+                {
                     products.map(product => (
-                        <Card className='col-12 col-xlg-3 col-lg-3 col-sm-12 col-md-6'>
+                        <Card className='col-12 col-lg-3 col-md-6 col-sm-12 m-3 p-0'>
                             <Card.Img variant="top"
                                 src={
                                     product.images[0]
-                                }/>
+                                } />
                             <Card.Body>
                                 <Card.Title>{
                                     product.title
@@ -42,15 +38,13 @@ export default async function Products() {
                                 } </Card.Text>
                                 <Link variant="primary"
                                     href={
-                                        `/products/${
-                                            product.id
+                                        `/products/${product.id
                                         }`
-                                }>View detail</Link>
+                                    }>View detail</Link>
                             </Card.Body>
                         </Card>
                     ))
                 } </div>
-            </div>
         </main>
     )
 }
